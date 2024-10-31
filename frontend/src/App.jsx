@@ -7,13 +7,14 @@ import { Toaster } from "react-hot-toast";
 import { useAuthStore } from "./store/authStore";
 import { useEffect } from "react";
 import DashboardPage from "./pages/DashboardPage";
+import LoadingSpinner from "./components/LoadingSpinner";
 
 //protect routes that require authentication
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, user, isCheckingAuth } = useAuthStore();
 
   if (isCheckingAuth) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
