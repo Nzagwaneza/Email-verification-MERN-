@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 export const verifyToken = (req, res, next) => {
   const token = req.cookies.token; //we are using cookies.token since in generate token function we defined it as token < res.cookie("token", token, ...>
   if (!token) {
-    res
+    return res
       .status(401)
       .json({ success: false, message: "Unauthorized - No token generated." });
   }

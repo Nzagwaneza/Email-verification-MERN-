@@ -16,7 +16,7 @@ const SignUpPage = () => {
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
-      await signup(email, password, name);
+      await signup(name, email, password);
       navigate("/verify-email");
     } catch (error) {
       console.log(error);

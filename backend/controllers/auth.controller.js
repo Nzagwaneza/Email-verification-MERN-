@@ -194,7 +194,9 @@ export const checkAuth = async (req, res) => {
   try {
     const user = await User.findById(req.userId).select("-password"); //password will not be selected. In this case when we console log user there will not password displayed( =undefined)
     if (!user) {
-      res.status(400).json({ success: false, message: "User not found" });
+      return res
+        .status(400)
+        .json({ success: false, message: "User not found" });
     }
 
     res.status(200).json({ success: true, user });

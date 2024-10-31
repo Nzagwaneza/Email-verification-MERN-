@@ -10,11 +10,20 @@ import DashboardPage from "./pages/DashboardPage";
 
 //protect routes that require authentication
 const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated, user } = useAuthStore();
+  const { isAuthenticated, user, isCheckingAuth } = useAuthStore();
+
+  if (isCheckingAuth) {
+    return <div>Loading...</div>;
+  }
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
   }
-  if (!user.isVerified) {
+
+  if (!user) {
+    return null;
+  }
+
+  if (!user?.isVerified) {
     return <Navigate to="/verify-email" replace />;
   }
   return children;
@@ -34,6 +43,7 @@ function App() {
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
+
   console.log("IsAuthenticated", isAuthenticated);
   console.log("user", user);
 
