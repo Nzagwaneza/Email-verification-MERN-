@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useAuthStore } from "../store/authStore";
 import { useNavigate, useParams } from "react-router-dom";
 import { Lock } from "lucide-react";
-import Input from "../components/input";
+import Input from "../components/Input";
 import toast from "react-hot-toast";
 
 export const ResetPasswordPage = () => {
