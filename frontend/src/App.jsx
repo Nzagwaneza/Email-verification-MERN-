@@ -119,6 +119,8 @@ function App() {
             </RedirectAuthenticatedUser>
           }
         />
+        {/* this is reserved for all other routes */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <Toaster />
     </div>
